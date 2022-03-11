@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Slim&display=swap');
+
+
+*{
+    font-family: Nova Slim;
+}
+
+header {
+    background-color: forestgreen;
+}
+
+body {
+    box-sizing: content-box;
+}
+
+div.title {
+    
+    color: white;
+    text-align: center;
+}
+div.title h1 {
+    padding: 20px;
+}
+
+/* Main content */
+main.dashboard {
+    background-color: grey;
+}
+
+/* Left Sidebar */
+div.recent-searches h2 {
+    font-size: 1.2rem;
+}
+
+div.cityList {
+    margin-top: 15px;
+}
+
+div.city {
+    padding: 15px;
+}
+
+div.cityName {
+    background-color: grey;
+    color: black;   
+}
+/* Weather Data */
+
+div.currWeather {
+    margin-bottom: 25px;
+    background-color: lightgreen;
+    width: 50%;
+}
+
+div.currWeather h2,
+div.currWeather h3 {
+    font-size: 1.3rem;
+    margin: 15px;
+}
+
+span#uv-index {
+    color: gray;
+}
+
+div.fiveDay h2 {
+    font-size: 2.4rem;
+}
+
+div.fiveDay p {
+    font-size: 1.8rem;
+}
+
+div.fiveDay p.card-title {
+    font-weight: bold;
+    color: white;
+}
+
+.card {
+    background-color: forestgreen;
+}
+
+.text-muted {
+    color: white !important;
+}
