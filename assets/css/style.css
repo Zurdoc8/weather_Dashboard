@@ -62,15 +62,15 @@ span#uv-index {
     color: gray;
 }
 
-div.fiveDay h2 {
+div.foreCast h2 {
     font-size: 2.4rem;
 }
 
-div.fiveDay p {
+div.foreCast p {
     font-size: 1.8rem;
 }
 
-div.fiveDay p.card-title {
+div.foreCast p.card-title {
     font-weight: bold;
     color: white;
 }
