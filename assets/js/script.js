@@ -88,3 +88,39 @@ temperatureElm.html(response.main.temp);
 humidityElm.text(response.main.humidity);
 windElm.text((response.wind.speed * 2.237).toFixed(1));
 
+let lat = response.coord.lat;
+let lon = response.coord.lon;
+let queryURLAll = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+            $.ajax({
+                url: queryURLAll,
+                method: 'GET'
+            }).then(function (response) {
+                let uvIndex = response.current.uvi;
+                let uvColor = detUVIndexColor(uvIndex);
+                uvIndexEl.text(response.current.uvi);
+                uvIndexEl.attr('style', `background-color: ${uvColor}; color: ${uvColor === "yellow" ? "black" : "white"}`);
+                let fiveDay = response.daily;
+            
+                for (let i = 0; i <= 5; i++) {
+                    let currentDay = fiveDay[i];
+                    $(`div.day-${i} .card-title`).text(moment.unix(currentDay.dt).format('L'));
+                    $(`div.day-${i} .fiveDay-img`).attr(
+                        'src',
+                        `http://openweathermap.org/img/wn/${currentDay.weather[0].icon}.png`
+                    ).attr('alt', currentDay.weather[0].description);
+                    $(`div.day-${i} .fiveDay-temp`).text(currentDay.temp.day);
+                    $(`div.day-${i} .fiveDay-humid`).text(currentDay.humidity);
+                }
+            });
+
+            function showRecentlySearchCity() {
+                if (recentCities[0]) {
+                    let = queryURL = createURLfromId(recentCities[0].id);
+                    searchWeather(queryURL);
+                } else {
+                    let queryURL = createURLFromInput("Detroit");
+                    searchWeather(queryURL);
+                }
+            }
+
+            
