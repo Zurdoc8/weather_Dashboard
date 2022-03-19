@@ -26,12 +26,12 @@ function storedCities() {
 
 function createURLFromInput(city) {
     if (city) {
-        return `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units={metric}`;
+        return `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     }
 }
 
 function createURLfromId(id) {
-    return 'https://api.openweathermap.org/data/2.5/weather?id=${id}&appid=${apiKey}&units={metric}';
+    return 'https://api.openweathermap.org/data/2.5/weather?id=${id}&appid=${apiKey}&units=metric';
 }
 
 function displayCities(recentCities) {
@@ -84,4 +84,7 @@ let setDate = moment.unix(response.dt).format('L');
 dateElm.text(setDate);
 let weatherIcon = response.weather[0].icon;
 weatherIconElm.attr('src', `http://openweathermap.org/img/wn/${weatherIcon}.png`).attr('alt', response.weather[0].description);
-temperatureElm.html(((response.main.temp)))
+temperatureElm.html(response.main.temp);
+humidityElm.text(response.main.humidity);
+windElm.text((response.wind.speed * 2.237).toFixed(1));
+
