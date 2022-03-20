@@ -13,6 +13,20 @@
 
     let recentCities = [];
 
+    function compare(a, b) {
+        // Use toUpperCase() to ignore character casing
+        const cityA = a.city.toUpperCase();
+        const cityB = b.city.toUpperCase();
+ 
+        let comparison = 0;
+        if (cityA > cityB) {
+            comparison = 1;
+        } else if (cityA < cityB) {
+            comparison = -1;
+        }
+        return comparison;
+    }
+ 
     function loadCities() {
         const storedCities = JSON.parse(localStorage.getItem(recentCities));
         if (storedCities) {
@@ -39,7 +53,7 @@
         recentCities.splice(5);
         let sortedCities = [...recentCities];
         sortedCities.sort(compare);
-        sortedCities.forEach(function (location){
+        sortedCities.forEach(function (location) {
             let cityDiv = $('<div>').addClass('col-12 city');
             let cityBtn = $('<button>').addClass('btn btn-light city-btn').text(location.city);
             cityDiv.append(cityBtn);
@@ -78,8 +92,6 @@
     storedCities();
     displayCities(recentCities);
     
-
-
     cityElm.text(response.name);
     let setDate = moment.unix(response.dt).format('L');
     dateElm.text(setDate);
@@ -114,6 +126,7 @@
                     }
                 });
 
+                console.log(queryURLAll);
                 function showRecentlySearchCity() {
                     if (recentCities[0]) {
                         let = queryURL = createURLfromId(recentCities[0].id);
@@ -139,7 +152,7 @@
                 });
 
                 $(document).on("click", "button.city-btn", function(event) {
-                    let clickedCity = $(this).text();
+                    let clickedCity = $(event).text();
                     let foundCity = $.grep(recentCities, function (storedCity) {
                         return clickedCity === storedCity.city;
                     })
@@ -151,4 +164,5 @@
                 displayCities(recentCities);
 
                 showRecentlySearchCity();
+                
     };
